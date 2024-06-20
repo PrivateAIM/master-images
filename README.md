@@ -1,7 +1,7 @@
 [![Master Workflow](https://github.com/PHT-Medic/master-images/workflows/main/badge.svg)](https://github.com/PHT-Medic/master-images)
 
 # Master Images 💽
-This repository contains all docker images, with which an analysis algorithm can be built.
+This repository contains all docker/master images, with which an analysis algorithm can be built.
 
 **Table of Contents**
 
@@ -10,7 +10,7 @@ This repository contains all docker images, with which an analysis algorithm can
 - [Contributing](#contributing)
 
 ## Usage
-Master images can be developed or deployed by defining them in the `data` directory.
+Master images can be added by defining them in the `data` directory.
 How this works can be looked up in detail [here](#folder-structure).
 
 After a new master image is created it can be tested locally.
@@ -83,7 +83,7 @@ But there is practically no limit, as long as the base image provides a command 
 
 ## Contributing
 If you have any questions, regarding creating & integrating own master-images,
-feel free to open an issue or start a [discussion](https://github.com/PHT-Medic/master-images/discussions).
+feel free to open an issue or start a [discussion](https://github.com/PrivateAim/master-images/discussions).
 
 
 ## Webhook
