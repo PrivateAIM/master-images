@@ -1,4 +1,4 @@
-[![Master Workflow](https://github.com/PHT-Medic/master-images/workflows/main/badge.svg)](https://github.com/PHT-Medic/master-images)
+[![Master Workflow](https://github.com/PrivateAim/master-images/workflows/main/badge.svg)](https://github.com/PrivateAim/master-images)
 
 # Master Images 💽
 This repository contains all docker/master images, with which an analysis algorithm can be built.
