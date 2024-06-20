@@ -1,6 +1,8 @@
-[![Master Workflow](https://github.com/PrivateAim/master-images/workflows/main/badge.svg)](https://github.com/PrivateAim/master-images)
-
 # Master Images 💽
+
+[![CI](https://github.com/PrivateAIM/master-images/actions/workflows/ci.yml/badge.svg)](https://github.com/PrivateAIM/master-images/actions/workflows/ci.yml)
+
+
 This repository contains all docker/master images, with which an analysis algorithm can be built.
 
 **Table of Contents**
