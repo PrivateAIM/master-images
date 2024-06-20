@@ -5,9 +5,12 @@
  * view the LICENSE file that was distributed with this source code.
  */
 
-import { Router, send } from 'routup';
+import { createServer } from 'node:http';
+import {
+    Router, coreHandler, createNodeDispatcher, send,
+} from 'routup';
 import { createJsonHandler } from '@routup/body';
-import { spawnCLIProcess } from '../../commands/utils/spawn';
+import { spawnCLIProcess } from '../../commands/utils';
 import type { Config } from '../../config';
 import { verifyWebhookRequestSignature } from './verify';
 
@@ -23,22 +26,22 @@ export async function serveWebhook(
 
     router.use(createJsonHandler());
 
-    router.use('/', async (req, res) => {
+    router.use('/', coreHandler(async (req, res) => {
         if (!verifyWebhookRequestSignature(req, config)) {
             res.statusCode = 400;
 
-            send(res, {
+            return send(res, {
                 success: false,
                 message: 'The request signature could not be detected or verified.',
             });
-
-            return;
         }
 
         await execute();
 
-        send(res, { success: true });
-    });
+        return send(res, { success: true });
+    }));
 
-    router.listen(config.get('port'));
+    const server = createServer(createNodeDispatcher(router));
+
+    server.listen(config.get('port'));
 }

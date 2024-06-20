@@ -7,8 +7,9 @@
 
 import { consola } from 'consola';
 import { createHmac } from 'crypto';
+import { useRequestBody } from '@routup/body';
 import type { Request } from 'routup';
-import { getRequestHeader, useRequestBody } from 'routup';
+import { getRequestHeader } from 'routup';
 import type { Config } from '../../config';
 
 export function verifyWebhookRequestSignature(req: Request, config: Config) : boolean {
