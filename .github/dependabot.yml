@@ -11,6 +11,7 @@ updates:
     - package-ecosystem: "npm"
       directory: "/"
       target-branch: "develop"
+      open-pull-requests-limit: 20
       schedule:
           interval: "daily"
       versioning-strategy: "increase"
