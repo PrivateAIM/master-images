@@ -1,6 +1,0 @@
-{
-    "id": "cord",
-    "name": "Cord",
-    "command": "Rscript",
-    "commandArguments": []
-}
