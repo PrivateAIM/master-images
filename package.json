@@ -36,7 +36,7 @@
         "cross-spawn": "^7.0.3",
         "docker-scan": "^1.1.0",
         "dockerode": "^4.0.2",
-        "dotenv": "^16.3.1",
+        "dotenv": "^16.4.5",
         "get-port-please": "^3.1.2",
         "locter": "^2.1.0",
         "routup": "^3.3.0",
