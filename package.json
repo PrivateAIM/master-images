@@ -27,7 +27,7 @@
     "bin": "dist/index.js",
     "license": "MIT",
     "dependencies": {
-        "@routup/body": "^2.3.0",
+        "@routup/body": "^2.4.0",
         "@tada5hi/semantic-release": "^0.3.1",
         "@tada5hi/tsconfig": "^0.5.1",
         "cac": "^6.7.14",
@@ -39,7 +39,7 @@
         "dotenv": "^16.4.5",
         "get-port-please": "^3.1.2",
         "locter": "^2.1.0",
-        "routup": "^3.3.0",
+        "routup": "^4.0.0",
         "semantic-release": "^22.0.12",
         "semver": "^7.6.2",
         "smob": "^1.5.0",
