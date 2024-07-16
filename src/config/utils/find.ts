@@ -9,10 +9,10 @@ import { load, locateMany } from 'locter';
 import { isObject, merge } from 'smob';
 import type { OptionsInput } from '../type';
 
-export async function loadOptions(path?: string) : Promise<OptionsInput> {
+export async function readConfig(path?: string) : Promise<OptionsInput> {
     const items : OptionsInput[] = [];
 
-    const fileInfos = await locateMany('pht.config.{ts,cts,mts,cjs,mjs,js,json}', {
+    const fileInfos = await locateMany('master-images.config.{ts,cts,mts,cjs,mjs,js,json}', {
         path,
     });
 
