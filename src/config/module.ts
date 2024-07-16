@@ -8,7 +8,7 @@
 import { getPort } from 'get-port-please';
 import { getPackageJsonVersionTag } from '../utils';
 import type { Config } from './type';
-import { buildConfig, loadOptions } from './utils';
+import { buildConfig, readConfig } from './utils';
 
 let instance : Config | undefined;
 
@@ -17,7 +17,7 @@ export async function createConfig(directoryPath?: string) : Promise<Config> {
         return instance;
     }
 
-    const input = await loadOptions(directoryPath);
+    const input = await readConfig(directoryPath);
     instance = buildConfig(input);
 
     // find open port
