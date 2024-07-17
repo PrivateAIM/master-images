@@ -11,6 +11,22 @@
 * bump locter vo v2.x ([658b9d3](https://github.com/PrivateAIM/master-images/commit/658b9d33e4f742a1bff2f02dd9eed99edec6c30e))
 * cleanup data directory ([252c804](https://github.com/PrivateAIM/master-images/commit/252c80425898ec3cc8e5f433dfcaed4e68a6cda6))
 * provide different package entrypoint (cli + lib) ([8f7e880](https://github.com/PrivateAIM/master-images/commit/8f7e880e8c6bef11284597db8c05bddcb6e83ac7))
+* set current version to v3.4.0 ([837f195](https://github.com/PrivateAIM/master-images/commit/837f1950a102a1597227ae3d5cce118b2f64ca25))
+* upgraded to routup v3 ([88cfcec](https://github.com/PrivateAIM/master-images/commit/88cfceca9607194c8895b524d00d401d96e6eaa8))
+
+# [3.1.0](https://github.com/PrivateAIM/master-images/compare/v3.0.2...v3.1.0) (2024-07-17)
+
+
+### Bug Fixes
+
+* enhance loading configuration file ([7835a80](https://github.com/PrivateAIM/master-images/commit/7835a80a17a946c2a6d5bcbf310570e1933ec0f5))
+
+
+### Features
+
+* bump locter vo v2.x ([658b9d3](https://github.com/PrivateAIM/master-images/commit/658b9d33e4f742a1bff2f02dd9eed99edec6c30e))
+* cleanup data directory ([252c804](https://github.com/PrivateAIM/master-images/commit/252c80425898ec3cc8e5f433dfcaed4e68a6cda6))
+* provide different package entrypoint (cli + lib) ([8f7e880](https://github.com/PrivateAIM/master-images/commit/8f7e880e8c6bef11284597db8c05bddcb6e83ac7))
 * upgraded to routup v3 ([88cfcec](https://github.com/PrivateAIM/master-images/commit/88cfceca9607194c8895b524d00d401d96e6eaa8))
 
 # 1.0.0 (2024-06-20)
