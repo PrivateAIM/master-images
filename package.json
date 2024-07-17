@@ -55,7 +55,7 @@
         "locter": "^2.1.0",
         "routup": "^4.0.0",
         "semantic-release": "^22.0.12",
-        "semver": "^7.6.2",
+        "semver": "^7.6.3",
         "smob": "^1.5.0",
         "tar-fs": "^3.0.6",
         "ts-node": "^10.9.1",
