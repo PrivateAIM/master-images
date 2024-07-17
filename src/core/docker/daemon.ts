@@ -17,3 +17,7 @@ export function useDockerDaemon() {
 
     return instance;
 }
+
+export function setDockerDaemon(input: DockerClient) {
+    instance = input;
+}

@@ -8,10 +8,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import semver from 'semver';
-import { VersionTag } from '../constants';
+import { PACKAGE_PATH, VersionTag } from '../constants';
 
 export async function getPackageJsonVersionTag() : Promise<`${VersionTag}`> {
-    const filePath = path.join(__dirname, '..', '..', 'package.json');
+    const filePath = path.join(PACKAGE_PATH, 'package.json');
 
     const stat = await fs.promises.stat(filePath);
     if (!stat.isFile()) {

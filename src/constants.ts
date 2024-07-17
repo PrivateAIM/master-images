@@ -13,9 +13,10 @@ export enum RegistryEnv {
     PASSWORD = 'REGISTRY_PASSWORD',
 }
 
+export const PACKAGE_PATH = path.join(__dirname, '..');
+
 export const SCAN_IMAGE_PATH = path.join(
-    __dirname,
-    '..',
+    PACKAGE_PATH,
     'data',
 );
 
