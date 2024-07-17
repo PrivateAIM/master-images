@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/PrivateAIM/master-images/compare/v3.5.0...v3.6.0) (2024-07-17)
+
+
+### Features
+
+* set last version to v3.5.0 ([56ef163](https://github.com/PrivateAIM/master-images/commit/56ef163ffbb97c0ffdd2db7b45d89f366baac5db))
+
 # [3.1.0](https://github.com/PrivateAIM/master-images/compare/v3.0.2...v3.1.0) (2024-07-17)
 
 
