@@ -6,3 +6,7 @@ RUN apt -y update && apt-get -y install software-properties-common && \
     apt-get install -y python3.10 git && apt install -y python-is-python3 && apt install -y python3-pip \
 
 RUN pip3 install git+https://github.com/PrivateAIM/python-sdk.git
+
+COPY requirements.txt /tmp/requirements.txt
+
+RUN pip3 install -r /tmp/requirements.txt
