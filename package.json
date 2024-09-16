@@ -41,7 +41,7 @@
     "bin": "dist/cli.js",
     "license": "MIT",
     "dependencies": {
-        "@routup/body": "^2.4.0",
+        "@routup/body": "^2.4.1",
         "@tada5hi/semantic-release": "^0.3.1",
         "@tada5hi/tsconfig": "^0.5.1",
         "cac": "^6.7.14",
