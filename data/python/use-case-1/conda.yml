@@ -1,4 +1,4 @@
-echo "name: use-case-1
+name: use-case-1
 channels:
   - bioconda
   - conda-forge
@@ -251,8 +251,3 @@ dependencies:
       - scikit-learn==1.5.1
       - scipy==1.13.1
       - threadpoolctl==3.5.0
-
-" > env.yml
-
-conda env create -f env.yml
-
