@@ -6,10 +6,7 @@ RUN apt-get update -yqq && \
 
 COPY conda.yml /tmp/conda.yml
 
-RUN conda create -n use-case-1 && \
-    conda activate use-case-1 && \
-    conda env update -f conda.yml
+RUN conda env create -f /tmp/conda.yml
 
-RUN python3 -m pip install --upgrade pip && \
-    pip3 install git+https://github.com/PrivateAIM/python-sdk.git@822aa858946f40172594c7fa6d399080fa23dcfd
-
+RUN echo "conda activate use-case-1" >> ~/.bashrc
+SHELL ["/bin/bash", "--login", "-c"]

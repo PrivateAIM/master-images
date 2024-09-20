@@ -245,9 +245,11 @@ dependencies:
       - matplotlib==3.9.1
       - natsort==8.4.0
       - packaging==24.1
+      - pandas==2.2.2
       - pillow==10.4.0
       - pydeseq2==0.4.10
       - pyparsing==3.1.2
       - scikit-learn==1.5.1
       - scipy==1.13.1
       - threadpoolctl==3.5.0
+      - git+https://github.com/PrivateAIM/python-sdk.git@74f7564a77f3b6d16afdff3cab9ef9aa8a84380d
