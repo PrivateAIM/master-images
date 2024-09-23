@@ -8,5 +8,5 @@ COPY conda.yml /tmp/conda.yml
 
 RUN conda env create -f /tmp/conda.yml
 
-RUN echo "conda activate use-case-1" >> ~/.bashrc
-SHELL ["/bin/bash", "--login", "-c"]
+#RUN echo "conda activate use-case-1" >> ~/.bashrc
+#SHELL ["/bin/bash", "--login", "-c"]
