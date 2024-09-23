@@ -1,6 +1,3 @@
 {
-    "id": "conda",
-    "name": "Conda",
-    "command": "conda",
     "commandArguments": ["run", "-n", "use-case-1", "python"]
 }
