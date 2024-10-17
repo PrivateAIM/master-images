@@ -67,7 +67,7 @@
         "@tada5hi/eslint-config-typescript": "^1.2.11",
         "@types/cross-spawn": "^6.0.2",
         "@types/dockerode": "^3.3.30",
-        "@types/node": "^20.4.4",
+        "@types/node": "^22.7.6",
         "@types/semver": "^7.5.8",
         "@types/tar-fs": "^2.0.4",
         "eslint": "^8.48.0",
