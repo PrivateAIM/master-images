@@ -4,3 +4,5 @@ uvicorn == 0.27.1
 minio == 7.2.4
 pandas == 2.2.2
 scikit-learn == 1.5.2
+numpy
+pandas
