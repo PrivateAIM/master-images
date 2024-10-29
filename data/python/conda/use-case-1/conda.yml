@@ -252,4 +252,4 @@ dependencies:
       - scikit-learn==1.5.1
       - scipy==1.13.1
       - threadpoolctl==3.5.0
-      - git+https://github.com/PrivateAIM/python-sdk.git@7280dca66c8e0356157585256b96c7ad9b871142
+      - git+https://github.com/PrivateAIM/python-sdk.git@3dea290c983598a50a83cc45bf2659cdcaa7674d
