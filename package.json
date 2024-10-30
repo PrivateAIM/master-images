@@ -71,7 +71,7 @@
         "@types/semver": "^7.5.8",
         "@types/tar-fs": "^2.0.4",
         "eslint": "^8.48.0",
-        "rollup": "^4.18.1",
+        "rollup": "^4.24.3",
         "typescript": "^5.5.2"
     }
 }
