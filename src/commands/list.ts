@@ -7,7 +7,7 @@
 
 import type { CAC } from 'cac';
 import { consola } from 'consola';
-import { scanDirectory } from 'docker-scan';
+import { scanDirectory } from 'docken';
 import { SCAN_IMAGE_PATH } from '../constants';
 
 export function registerCLIListCommand(cli: CAC) {

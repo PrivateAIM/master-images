@@ -5,7 +5,7 @@
  * view the LICENSE file that was distributed with this source code.
  */
 
-import type { Image } from 'docker-scan';
+import type { Meta } from 'docken';
 import type { AuthConfig } from 'dockerode';
 import type { Config } from '../../../config';
 import { useDockerDaemon } from '../daemon';
@@ -13,7 +13,7 @@ import { buildImageURL, isDockerModemResponseValid } from '../utils';
 import type { ImageHooks } from './type';
 
 export async function pushImage(context: {
-    image: Image,
+    image: Meta,
     config: Config,
     hooks?: ImageHooks
 }) {
@@ -55,7 +55,7 @@ export async function pushImage(context: {
     });
 }
 export async function pushImages(context: {
-    images: Image[],
+    images: Meta[],
     config: Config,
     hooks?: ImageHooks
 }) {

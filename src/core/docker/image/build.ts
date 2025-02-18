@@ -5,7 +5,7 @@
  * view the LICENSE file that was distributed with this source code.
  */
 
-import type { Image } from 'docker-scan';
+import type { Meta } from 'docken';
 import path from 'node:path';
 import tar from 'tar-fs';
 import type { Config } from '../../../config';
@@ -16,7 +16,7 @@ import type { ImageHooks } from './type';
 
 export async function buildImage(context: {
     config: Config,
-    image: Image,
+    image: Meta,
     hooks?: ImageHooks
 }) {
     const imageURL = await buildImageURL(context);
@@ -55,7 +55,7 @@ export async function buildImage(context: {
     });
 }
 export async function buildImages(context: {
-    images: Image[],
+    images: Meta[],
     config: Config,
     hooks?: ImageHooks
 }) {
