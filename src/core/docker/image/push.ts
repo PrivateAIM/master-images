@@ -6,10 +6,11 @@
  */
 
 import type { Meta } from 'docken';
+import { waitForModemStream } from 'docken';
 import type { AuthConfig } from 'dockerode';
 import type { Config } from '../../../config';
 import { useDockerDaemon } from '../daemon';
-import { buildImageURL, isDockerModemResponseValid } from '../utils';
+import { buildImageURL } from '../utils';
 import type { ImageHooks } from './type';
 
 export async function pushImage(context: {
@@ -39,21 +40,9 @@ export async function pushImage(context: {
         authconfig: authConfig,
     });
 
-    return new Promise((resolve, reject) => {
-        docker.modem.followProgress(
-            stream,
-            (err: Error | null, res: any[]) => {
-                if (err) return reject(err);
-
-                if (!isDockerModemResponseValid(res)) {
-                    reject(new Error('Image could not be build.'));
-                }
-
-                return resolve(res);
-            },
-        );
-    });
+    return waitForModemStream(docker.modem, stream);
 }
+
 export async function pushImages(context: {
     images: Meta[],
     config: Config,
