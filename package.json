@@ -20,8 +20,7 @@
         "lint:fix": "npm run lint -- --fix"
     },
     "keywords": [
-        "pht",
-        "train",
+        "analysis",
         "master-image",
         "docker",
         "image-scan"
@@ -39,7 +38,7 @@
         "./bin/*": "./bin/*"
     },
     "bin": "dist/cli.js",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "dependencies": {
         "@routup/body": "^2.4.0",
         "@tada5hi/semantic-release": "^0.3.1",
