@@ -6,7 +6,7 @@
  */
 
 import { waitForModemStream } from 'docken';
-import type { Meta } from 'docken';
+import type { ScanResultItem } from 'docken';
 import path from 'node:path';
 import tar from 'tar-fs';
 import type { Config } from '../../../config';
@@ -17,7 +17,7 @@ import type { ImageHooks } from './type';
 
 export async function buildImage(context: {
     config: Config,
-    image: Meta,
+    image: ScanResultItem,
     hooks?: ImageHooks
 }) {
     const imageURL = await buildImageURL(context);
@@ -44,7 +44,7 @@ export async function buildImage(context: {
     }
 }
 export async function buildImages(context: {
-    images: Meta[],
+    images: ScanResultItem[],
     config: Config,
     hooks?: ImageHooks
 }) {

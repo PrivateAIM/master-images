@@ -5,7 +5,7 @@
  * view the LICENSE file that was distributed with this source code.
  */
 
-import type { Meta } from 'docken';
+import type { ScanResultItem } from 'docken';
 import { waitForModemStream } from 'docken';
 import type { AuthConfig } from 'dockerode';
 import type { Config } from '../../../config';
@@ -14,7 +14,7 @@ import { buildImageURL } from '../utils';
 import type { ImageHooks } from './type';
 
 export async function pushImage(context: {
-    image: Meta,
+    image: ScanResultItem,
     config: Config,
     hooks?: ImageHooks
 }) {
@@ -44,7 +44,7 @@ export async function pushImage(context: {
 }
 
 export async function pushImages(context: {
-    images: Meta[],
+    images: ScanResultItem[],
     config: Config,
     hooks?: ImageHooks
 }) {
