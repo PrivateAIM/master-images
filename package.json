@@ -57,7 +57,7 @@
         "smob": "^1.5.0",
         "tar-fs": "^3.0.6",
         "ts-node": "^10.9.1",
-        "zod": "^3.23.8"
+        "zod": "^3.24.2"
     },
     "devDependencies": {
         "@rollup/plugin-node-resolve": "^15.2.3",
