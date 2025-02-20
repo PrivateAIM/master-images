@@ -5,18 +5,19 @@
  * view the LICENSE file that was distributed with this source code.
  */
 
-import type { Image } from 'docker-scan';
+import { waitForModemStream } from 'docken';
+import type { ScanResultItem } from 'docken';
 import path from 'node:path';
 import tar from 'tar-fs';
 import type { Config } from '../../../config';
 import { SCAN_IMAGE_PATH } from '../../../constants';
 import { useDockerDaemon } from '../daemon';
-import { buildImageURL, isDockerModemResponseValid } from '../utils';
+import { buildImageURL } from '../utils';
 import type { ImageHooks } from './type';
 
 export async function buildImage(context: {
     config: Config,
-    image: Image,
+    image: ScanResultItem,
     hooks?: ImageHooks
 }) {
     const imageURL = await buildImageURL(context);
@@ -30,32 +31,20 @@ export async function buildImage(context: {
         t: imageURL,
     });
 
-    return new Promise((resolve, reject) => {
-        docker.modem.followProgress(
-            stream,
-            (err: Error | null, res: any[]) => {
-                if (err) return reject(err);
-
-                if (!isDockerModemResponseValid(res)) {
-                    reject(new Error('Image could not be build.'));
-                }
-
-                if (context.hooks && context.hooks.onCompleted) {
-                    context.hooks.onCompleted();
-                }
-
-                return resolve(res);
-            },
-            (res: any) => {
-                if (context.hooks && context.hooks.onProgress) {
-                    context.hooks.onProgress(res);
-                }
-            },
-        );
+    await waitForModemStream(docker.modem, stream, {
+        onProgress: (res) => {
+            if (context.hooks && context.hooks.onProgress) {
+                context.hooks.onProgress(res);
+            }
+        },
     });
+
+    if (context.hooks && context.hooks.onCompleted) {
+        context.hooks.onCompleted();
+    }
 }
 export async function buildImages(context: {
-    images: Image[],
+    images: ScanResultItem[],
     config: Config,
     hooks?: ImageHooks
 }) {

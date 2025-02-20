@@ -2,14 +2,12 @@
     "extends": "@tada5hi/tsconfig",
     "compilerOptions": {
         "lib": [
-            "ESNext"
+            "ESNext",
+            "DOM"
         ],
-        "module": "commonjs",
+        "module": "ESNext",
         "outDir": "dist",
-        "target": "ESNext",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "strictPropertyInitialization": false
+        "target": "ESNext"
     },
     "include": [
         "src/**/*.ts"

@@ -5,12 +5,12 @@
  * view the LICENSE file that was distributed with this source code.
  */
 
-import type { Image } from 'docker-scan';
+import type { ScanResultItem } from 'docken';
 import type { Config } from '../../../config';
 import { cleanDoubleSlashes, withoutTrailingSlash } from '../../../utils';
 
 type BuildImageURLContext = {
-    image: Image,
+    image: ScanResultItem,
     config: Config
 };
 export async function buildImageURL(ctx: BuildImageURLContext) : Promise<string> {

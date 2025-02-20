@@ -5,9 +5,10 @@
  * view the LICENSE file that was distributed with this source code.
  */
 
+import type { Client } from 'docken';
 import DockerClient from 'dockerode';
 
-let instance : DockerClient | undefined;
+let instance : Client | undefined;
 export function useDockerDaemon() {
     if (typeof instance !== 'undefined') {
         return instance;
