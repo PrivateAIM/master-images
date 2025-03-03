@@ -61,16 +61,16 @@
     },
     "devDependencies": {
         "@rollup/plugin-node-resolve": "^16.0.0",
-        "@rollup/plugin-swc": "^0.3.1",
-        "@tada5hi/eslint-config-typescript": "^1.2.11",
-        "@tada5hi/tsconfig": "^0.5.1",
-        "@types/cross-spawn": "^6.0.2",
-        "@types/dockerode": "^3.3.30",
-        "@types/node": "^22.13.4",
+        "@rollup/plugin-swc": "^0.4.0",
+        "@tada5hi/eslint-config-typescript": "^1.2.14",
+        "@tada5hi/tsconfig": "^0.6.0",
+        "@types/cross-spawn": "^6.0.6",
+        "@types/dockerode": "^3.3.35",
+        "@types/node": "^22.13.8",
         "@types/semver": "^7.5.8",
         "@types/tar-fs": "^2.0.4",
         "eslint": "^8.48.0",
-        "rollup": "^4.18.1",
-        "typescript": "^5.5.2"
+        "rollup": "^4.34.9",
+        "typescript": "^5.8.2"
     }
 }
