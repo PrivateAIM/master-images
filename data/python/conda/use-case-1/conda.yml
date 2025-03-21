@@ -252,4 +252,4 @@ dependencies:
       - scikit-learn==1.5.1
       - scipy==1.13.1
       - threadpoolctl==3.5.0
-      - git+https://github.com/PrivateAIM/flame-patterns.git@310de2c89a66017d7b369b4ac07ae72f0e3144b2
+      - git+https://github.com/PrivateAIM/flame-patterns.git@0355531996eb3793f45c15a7ace672acdb3096e4
