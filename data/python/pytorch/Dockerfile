@@ -7,8 +7,8 @@ RUN apt-get update -yqq && \
 
 COPY requirements.txt /tmp/requirements.txt
 
-RUN python3 -m pip install --upgrade pip
+COPY --from=ghcr.io/astral-sh/uv:0.6.9 /uv /uvx /bin/
 
-RUN pip3 install -r /tmp/requirements.txt
+RUN uv pip install --system -r /tmp/requirements.txt
 
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0355531996eb3793f45c15a7ace672acdb3096e4
+RUN uv pip install --system git+https://github.com/PrivateAIM/flame-patterns.git@0355531996eb3793f45c15a7ace672acdb3096e4
