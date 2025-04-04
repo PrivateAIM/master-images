@@ -11,4 +11,9 @@ RUN python3 -m pip install --upgrade pip
 
 RUN pip3 install -r /tmp/requirements.txt
 
+RUN python3 -c """
+import nltk
+nltk.download('punkt_tab')
+"""
+
 RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@98b6bf22eab172b5be856fd02c0442fc0ccd5683
