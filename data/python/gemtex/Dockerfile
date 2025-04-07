@@ -17,4 +17,4 @@ RUN echo 'import nltk\nnltk.download("punkt_tab")' >> nltk_downloads.py
 
 RUN python3 nltk_downloads.py
 
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@817e342aacf2cc1b3ba8e4d420d444271e25e0cf
+RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@9b6a8c7b5e9384324c061353382a8edb06916ead
