@@ -1,0 +1,7 @@
+pandas = 2.2.3
+lifelines = 0.30.0
+numpy = 1.26.4
+statsmodels = 0.14.4
+scikit-learn = 1.6.1
+requests = 2.32.3
+
