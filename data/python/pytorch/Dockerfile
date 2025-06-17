@@ -1,10 +1,11 @@
-FROM nvidia/cuda:12.9.0-cudnn-devel-ubuntu22.04
+FROM  nvidia/cuda:12.2.2-cudnn8-runtime-ubuntu22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -yqq && \
     apt-get dist-upgrade -yqq && \
-    apt-get install -yqq git
+    apt-get install -yqq git python3 python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /tmp/requirements.txt
 
