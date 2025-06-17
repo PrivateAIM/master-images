@@ -4,7 +4,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -yqq && \
     apt-get dist-upgrade -yqq && \
-    apt-get install -yqq git python3 python3-pip \
+      apt-get install -yqq \
+      git \
+      python3 \
+      python3-pip \
+      python-is-python3 && \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /tmp/requirements.txt
