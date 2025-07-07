@@ -1,0 +1,6 @@
+{
+    "id": "python",
+    "name": "Python",
+    "command": "python",
+    "commandArguments": ["-u"]
+}
