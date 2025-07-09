@@ -8,4 +8,4 @@ COPY requirements.txt /tmp/requirements.txt
 
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@v0.2.4
+RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.2.4
