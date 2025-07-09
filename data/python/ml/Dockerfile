@@ -7,3 +7,5 @@ RUN apt-get update -yqq && \
 COPY requirements.txt /tmp/requirements.txt
 
 RUN pip3 install -r /tmp/requirements.txt
+
+RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@v0.2.4
