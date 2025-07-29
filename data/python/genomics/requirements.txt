@@ -1,0 +1,6 @@
+pandas==2.3
+scikit-learn==1.7
+numpy==2.3
+tqdm==4.67
+minifasta>=3.0
+biopython==1.85
