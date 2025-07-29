@@ -1,0 +1,10 @@
+annoy==1.17.0
+numpy==1.24.4
+pandas==1.5.3
+tqdm==4.65.0
+SimpleITK==2.3.0
+nibabel==4.0.1
+pynrrd==1.1.1
+scipy==1.10.1
+scikit-image==0.24.0
+tables==3.9.2
