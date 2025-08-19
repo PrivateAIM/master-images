@@ -17,8 +17,8 @@ COPY requirements.txt /tmp/requirements.txt
 
 RUN python3 -m pip install --upgrade pip
 
-export HTSLIB_LIBRARY_DIR=/usr/local/lib
-export HTSLIB_INCLUDE_DIR=/usr/local/include
+ENV HTSLIB_LIBRARY_DIR=/usr/local/lib \
+  HTSLIB_INCLUDE_DIR=/usr/local/include
 
 RUN pip3 install -r /tmp/requirements.txt
 
