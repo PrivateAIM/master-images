@@ -31,10 +31,5 @@ RUN pip3 install -r /tmp/requirements.txt
 
 COPY --from=samply/mainzelliste-rs:main /usr/local/bin/mainzelliste /usr/local/bin/mainzelliste
 RUN chmod +x /usr/local/bin/mainzelliste
-
-RUN mkdir -p /var/lib/postgresql/data \
-    && chown -R postgres:postgres /var/lib/postgresql
-
-USER postgres
 	
 RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.2.4
