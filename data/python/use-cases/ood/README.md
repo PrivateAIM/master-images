@@ -65,4 +65,6 @@ Please ensure that any use of this project complies with the terms of the above 
 
 This project builds upon **PatchCore3D**. If you use ideas, code, or models from this project in your work, please cite the original PatchCore3D paper:
 
+```
 Frolova, D., Katrutsa, A., & Oseledets, I. (2023). *Feature-Based Pipeline for Improving Unsupervised Anomaly Segmentation on Medical Images*. In **International Workshop on Uncertainty for Safe Utilization of Machine Learning in Medical Imaging** (pp. 115–125). Springer.
+```

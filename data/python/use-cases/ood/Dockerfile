@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04
+FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -17,7 +17,7 @@ RUN python3 -m pip install --upgrade pip
 
 RUN pip3 install --no-cache-dir gdown
 
-RUN git clone https://github.com/SubmissionAnonym/PatchCore3D.git PatchCore3D
+RUN git clone https://github.com/DFrolova/PatchCore3D.git PatchCore3D
 
 RUN mkdir -p PatchCore3D/src/model && \
     gdown "https://drive.google.com/uc?id=1BmDC4USdZmX0ZSi-jQyUVmKHaDFIJFo2" \

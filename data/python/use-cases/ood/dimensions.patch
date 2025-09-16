@@ -142,14 +142,10 @@ index e4e35c7..b9251cb 100644
 +        return np.array(anomaly_scores), anomaly_scores, anomaly_scores  # redundant returns for consistency
  
 diff --git a/src/patchcore3d/patchcore3d.py b/src/patchcore3d/patchcore3d.py
-index df4fc57..a59d79f 100644
+index df4fc57..5797762 100644
 --- a/src/patchcore3d/patchcore3d.py
 +++ b/src/patchcore3d/patchcore3d.py
-@@ -1,2 +1,3 @@
- """PatchCore and PatchCore detection methods."""
-+
- import logging
-@@ -15,6 +16,7 @@ from dpipe.im.box import mask2bounding_box
+@@ -15,6 +15,7 @@ from dpipe.im.box import mask2bounding_box
  
 -import patchcore3d
 -import patchcore3d.backbones
@@ -159,9 +155,9 @@ index df4fc57..a59d79f 100644
 +import PatchCore3D.src.patchcore3d.backbones
 +import PatchCore3D.src.patchcore3d.common
 +import PatchCore3D.src.patchcore3d.sampler
-+from project_utils import load_image_from_item
++from analysis import ImageDataHandler
  
-@@ -23,6 +25,6 @@ LOGGER = logging.getLogger(__name__)
+@@ -23,6 +24,6 @@ LOGGER = logging.getLogger(__name__)
  
 -class PatchCore3D(torch.nn.Module):
 +class PatchCore3Dc(torch.nn.Module):
@@ -170,33 +166,33 @@ index df4fc57..a59d79f 100644
 -        super(PatchCore3D, self).__init__()
 +        super(PatchCore3Dc, self).__init__()
          self.device = device
-@@ -41,4 +43,4 @@ class PatchCore3D(torch.nn.Module):
+@@ -41,4 +42,4 @@ class PatchCore3D(torch.nn.Module):
          anomaly_score_num_nn=1,
 -        featuresampler=patchcore3d.sampler.IdentitySampler(),
 -        nn_method=patchcore3d.common.FaissNN(False, 4),
 +        featuresampler=PatchCore3D.src.patchcore3d.sampler.IdentitySampler(),
 +        nn_method=PatchCore3D.src.patchcore3d.common.FaissNN(False, 4),
          target_size_small=(70, 70, 45),
-@@ -55,3 +57,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -55,3 +56,3 @@ class PatchCore3D(torch.nn.Module):
  
 -        feature_aggregator = patchcore3d.common.NetworkFeatureAggregator(
 +        feature_aggregator = PatchCore3D.src.patchcore3d.common.NetworkFeatureAggregator(
              self.backbone, self.layers_to_extract_from, self.device
-@@ -63,5 +65,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -63,5 +64,3 @@ class PatchCore3D(torch.nn.Module):
  
 -        preprocessing = patchcore3d.common.Preprocessing(
 -            feature_dimensions, pretrain_embed_dimension
 -        )
 +        preprocessing = PatchCore3D.src.patchcore3d.common.Preprocessing(feature_dimensions, pretrain_embed_dimension)
          self.forward_modules["preprocessing"] = preprocessing
-@@ -69,5 +69,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -69,5 +68,3 @@ class PatchCore3D(torch.nn.Module):
          self.target_embed_dimension = target_embed_dimension
 -        preadapt_aggregator = patchcore3d.common.Aggregator(
 -            target_dim=target_embed_dimension
 -        )
 +        preadapt_aggregator = PatchCore3D.src.patchcore3d.common.Aggregator(target_dim=target_embed_dimension)
  
-@@ -77,5 +75,5 @@ class PatchCore3D(torch.nn.Module):
+@@ -77,5 +74,5 @@ class PatchCore3D(torch.nn.Module):
  
 -        LOGGER.info(f'Anomaly_scorer_type: {anomaly_scorer_type}')
 +        LOGGER.info(f"Anomaly_scorer_type: {anomaly_scorer_type}")
@@ -204,7 +200,7 @@ index df4fc57..a59d79f 100644
 -            self.anomaly_scorer = patchcore3d.common.NearestNeighbourScorer(
 +            self.anomaly_scorer = PatchCore3D.src.patchcore3d.common.NearestNeighbourScorer(
                  n_nearest_neighbours=anomaly_score_num_nn, nn_method=nn_method
-@@ -83,5 +81,5 @@ class PatchCore3D(torch.nn.Module):
+@@ -83,5 +80,5 @@ class PatchCore3D(torch.nn.Module):
          elif anomaly_scorer_type == "mahalanobis":
 -            self.anomaly_scorer = patchcore3d.common.MahalanobisDistanceScorer()
 +            self.anomaly_scorer = PatchCore3D.src.patchcore3d.common.MahalanobisDistanceScorer()
@@ -212,7 +208,7 @@ index df4fc57..a59d79f 100644
 -        self.anomaly_segmentor = patchcore3d.common.RescaleSegmentor(
 +        self.anomaly_segmentor = PatchCore3D.src.patchcore3d.common.RescaleSegmentor(
              device=self.device, target_size=input_shape[-3:]
-@@ -89,4 +87,5 @@ class PatchCore3D(torch.nn.Module):
+@@ -89,4 +86,5 @@ class PatchCore3D(torch.nn.Module):
  
 -        self.anomaly_segmentor_small = patchcore3d.common.RescaleSegmentor(
 -            device=self.device, target_size=target_size_small,
@@ -220,39 +216,39 @@ index df4fc57..a59d79f 100644
 +            device=self.device,
 +            target_size=target_size_small,
          )
-@@ -100,3 +99,5 @@ class PatchCore3D(torch.nn.Module):
+@@ -100,3 +98,5 @@ class PatchCore3D(torch.nn.Module):
                  if isinstance(image, dict):
 -                    image = image["image"]
-+                    image = load_image_from_item(image, to_tensor=True)  # .numpy()
++                    image = ImageDataHandler.load_image_from_item(image, to_tensor=True)  # .numpy()
 +                    if image is None:
 +                        continue
                  with torch.no_grad():
-@@ -121,5 +122,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -121,5 +121,3 @@ class PatchCore3D(torch.nn.Module):
  
 -        features = [
 -            self.patch_maker.patchify(x, return_spatial_info=True) for x in features
 -        ]
 +        features = [self.patch_maker.patchify(x, return_spatial_info=True) for x in features]
  
-@@ -166,4 +165,8 @@ class PatchCore3D(torch.nn.Module):
+@@ -166,4 +164,8 @@ class PatchCore3D(torch.nn.Module):
                      if isinstance(image, dict):
 -                        uids.append(image["uid"])
 -                        image = image["image"]
 +                        uids.append(image["file_name"])
-+                        image = load_image_from_item(image, to_tensor=True)  # .numpy()
++                        image = ImageDataHandler.load_image_from_item(image, to_tensor=True)  # .numpy()
 +                        if image is None:
 +                            continue
 +                        if min(image.squeeze().shape) <= 12:
 +                            continue
                      features.append(_image_to_features(image))
-@@ -171,4 +174,4 @@ class PatchCore3D(torch.nn.Module):
+@@ -171,4 +173,4 @@ class PatchCore3D(torch.nn.Module):
                          features = np.concatenate(features, axis=0)
 -                        fname = f'{idx + 1}_features.npy'
 -                        LOGGER.info(f'Saving features to {fname} (shape: {features.shape})')
 +                        fname = f"{idx + 1}_features.npy"
 +                        LOGGER.info(f"Saving features to {fname} (shape: {features.shape})")
                          save(features.astype(np.float16), os.path.join(run_save_path, fname))
-@@ -176,6 +179,11 @@ class PatchCore3D(torch.nn.Module):
+@@ -176,6 +178,11 @@ class PatchCore3D(torch.nn.Module):
  
 -            save_json(uids, os.path.join(run_save_path, 'uids.json'))
 -            features = np.vstack([np.load(os.path.join(run_save_path, embedding_file))
@@ -268,12 +264,12 @@ index df4fc57..a59d79f 100644
 +            )
 +            save(features.astype(np.float16), os.path.join(run_save_path, "features_1024.npy"))
              features = features.astype(np.float32)
-@@ -183,3 +191,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -183,3 +190,3 @@ class PatchCore3D(torch.nn.Module):
              for embedding_file in os.listdir(run_save_path):
 -                if embedding_file.endswith('_features.npy'):
 +                if embedding_file.endswith("_features.npy"):
                      os.remove(os.path.join(run_save_path, embedding_file))
-@@ -194,5 +202,7 @@ class PatchCore3D(torch.nn.Module):
+@@ -194,5 +201,7 @@ class PatchCore3D(torch.nn.Module):
                  cur_features = self.forward_modules["preprocessing"](
 -                    features[i * batch_size: (i + 1) * batch_size][None, ...])
 -                new_features[i * batch_size: (
@@ -284,7 +280,7 @@ index df4fc57..a59d79f 100644
 +                    cur_features
 +                )
              features = new_features.numpy().astype(np.float32)
-@@ -207,4 +217,8 @@ class PatchCore3D(torch.nn.Module):
+@@ -207,4 +216,8 @@ class PatchCore3D(torch.nn.Module):
          if isinstance(data, torch.utils.data.Dataset):
 -            return self._predict_dataset(data, saved_test_features_path=saved_test_features_path, 
 -                                         run_save_path=run_save_path, save_segmentation_images=save_segmentation_images)
@@ -295,7 +291,7 @@ index df4fc57..a59d79f 100644
 +                save_segmentation_images=save_segmentation_images,
 +            )
          return self._predict(data)
-@@ -227,10 +241,6 @@ class PatchCore3D(torch.nn.Module):
+@@ -227,10 +240,6 @@ class PatchCore3D(torch.nn.Module):
              save_indices = [0, 1, 1000, 1001, 1002, 1003]
 -            image_save_path = os.path.join(
 -                run_save_path, "segmentation_images"
@@ -308,7 +304,7 @@ index df4fc57..a59d79f 100644
 -        )
 +        pred_save_path = os.path.join(run_save_path, "predictions")
          os.makedirs(pred_save_path, exist_ok=True)
-@@ -246,13 +256,5 @@ class PatchCore3D(torch.nn.Module):
+@@ -246,13 +255,5 @@ class PatchCore3D(torch.nn.Module):
              for idx in data_iterator:
 -                
 +
@@ -323,7 +319,7 @@ index df4fc57..a59d79f 100644
 -                ) > 0.5
 -                small_masks_gt.extend(small_mask_gt.numpy().tolist())
  
-@@ -262,5 +264,4 @@ class PatchCore3D(torch.nn.Module):
+@@ -262,5 +263,4 @@ class PatchCore3D(torch.nn.Module):
                      if idx % chunk_size == 0:
 -                        chunk_file = f'test_features_{idx}.npy'
 -                        chunk_features = load(os.path.join(
@@ -331,7 +327,7 @@ index df4fc57..a59d79f 100644
 +                        chunk_file = f"test_features_{idx}.npy"
 +                        chunk_features = load(os.path.join(saved_test_features_path, chunk_file)).astype(np.float32)
  
-@@ -269,7 +270,5 @@ class PatchCore3D(torch.nn.Module):
+@@ -269,7 +269,5 @@ class PatchCore3D(torch.nn.Module):
                          len_chunk = len(chunk_features)
 -                        chunk_features = chunk_features.reshape(
 -                            -1, chunk_features.shape[-1])
@@ -341,7 +337,7 @@ index df4fc57..a59d79f 100644
 -                            (chunk_features.shape[0], self.target_embed_dimension))
 +                        new_features = np.zeros((chunk_features.shape[0], self.target_embed_dimension))
                          new_features = torch.from_numpy(new_features)
-@@ -279,4 +278,7 @@ class PatchCore3D(torch.nn.Module):
+@@ -279,4 +277,7 @@ class PatchCore3D(torch.nn.Module):
                              cur_features = self.forward_modules["preprocessing"](
 -                                chunk_features[i * batch_size: (i + 1) * batch_size][None, ...])
 -                            new_features[i * batch_size: (i + 1) * batch_size] = self.forward_modules["preadapt_aggregator"](cur_features)
@@ -351,20 +347,20 @@ index df4fc57..a59d79f 100644
 +                                "preadapt_aggregator"
 +                            ](cur_features)
                          chunk_features = new_features.numpy().astype(np.float32)
-@@ -284,4 +286,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -284,4 +285,3 @@ class PatchCore3D(torch.nn.Module):
  
 -                        chunk_features = chunk_features.reshape(
 -                            (len_chunk, -1, chunk_features.shape[-1]))
 +                        chunk_features = chunk_features.reshape((len_chunk, -1, chunk_features.shape[-1]))
  
-@@ -290,3 +291,5 @@ class PatchCore3D(torch.nn.Module):
+@@ -290,3 +290,5 @@ class PatchCore3D(torch.nn.Module):
                  else:
 -                    image = image["image"]
-+                    image = load_image_from_item(image, to_tensor=True)  # .numpy()
++                    image = ImageDataHandler.load_image_from_item(image, to_tensor=True)  # .numpy()
 +                    if image is None:
 +                        continue
                      image_features = None
-@@ -294,11 +297,7 @@ class PatchCore3D(torch.nn.Module):
+@@ -294,11 +296,7 @@ class PatchCore3D(torch.nn.Module):
                  _scores, _masks, _small_masks, _anomaly_patches, time_elapsed = self._predict(
 -                    image, features=image_features)
 +                    image, features=image_features
@@ -379,7 +375,7 @@ index df4fc57..a59d79f 100644
 -                        save(_small_masks[0], os.path.join(image_save_path, f'small_{uid}.npy'))
 -                        save(small_mask_gt, os.path.join(image_save_path, f'small_mask_{uid}.npy'))
  
-@@ -306,24 +305,20 @@ class PatchCore3D(torch.nn.Module):
+@@ -306,24 +304,20 @@ class PatchCore3D(torch.nn.Module):
                  segmentations = segmentations[None, ...]
 -                min_scores = (
 -                    segmentations.reshape(len(segmentations), -1)
@@ -419,7 +415,7 @@ index df4fc57..a59d79f 100644
 +                #     mask_bbox = mask2bounding_box(_small_masks > threshold)
 +                # mask_bboxes[uid] = mask_bbox
  
-@@ -331,21 +326,53 @@ class PatchCore3D(torch.nn.Module):
+@@ -331,21 +325,53 @@ class PatchCore3D(torch.nn.Module):
  
 -                if is_anomaly:
 -                    pixel_scores = patchcore3d.metrics.compute_pixelwise_retrieval_metrics(
@@ -466,7 +462,7 @@ index df4fc57..a59d79f 100644
 +
 +            try:
 +
-+                image = load_image_from_item(item, to_tensor=True)  # .numpy()
++                image = ImageDataHandler.load_image_from_item(item, to_tensor=True)  # .numpy()
 +                if image is None:
 +                    continue
 +                image_features = None
@@ -489,7 +485,7 @@ index df4fc57..a59d79f 100644
 +
 +        return scores
  
-@@ -368,17 +395,15 @@ class PatchCore3D(torch.nn.Module):
+@@ -368,17 +394,15 @@ class PatchCore3D(torch.nn.Module):
              patch_scores = image_scores = self.anomaly_scorer.predict([features])[0]
 -            image_scores = self.patch_maker.unpatch_scores(
 -                image_scores, batchsize=batchsize
@@ -516,7 +512,7 @@ index df4fc57..a59d79f 100644
 +                input_shape=self.anomaly_segmentor.target_size,
 +            )
  
-@@ -386,6 +411,11 @@ class PatchCore3D(torch.nn.Module):
+@@ -386,6 +410,11 @@ class PatchCore3D(torch.nn.Module):
              time_elapsed = time.time() - start_time
 -            small_masks = self.anomaly_segmentor_small.convert_to_segmentation(
 -                patch_scores)
@@ -532,10 +528,10 @@ index df4fc57..a59d79f 100644
 +            time_elapsed,
 +        )
  
-@@ -403,6 +433,8 @@ class PatchCore3D(torch.nn.Module):
+@@ -403,6 +432,8 @@ class PatchCore3D(torch.nn.Module):
                  if isinstance(image, dict):
 -                    image = image["image"]
-+                    image = load_image_from_item(image, to_tensor=True)  # .numpy()
++                    image = ImageDataHandler.load_image_from_item(image, to_tensor=True)  # .numpy()
 +                    if image is None:
 +                        continue
                  features.append(_image_to_features(image))
@@ -543,19 +539,19 @@ index df4fc57..a59d79f 100644
 -                    chunk_file = f'test_features_{idx // chunk_size * chunk_size}.npy'
 +                    chunk_file = f"test_features_{idx // chunk_size * chunk_size}.npy"
                      # features = np.concatenate(features, axis=0)
-@@ -410,3 +442,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -410,3 +441,3 @@ class PatchCore3D(torch.nn.Module):
                      save(features.astype(np.float16), os.path.join(run_save_path, chunk_file))
 -                    LOGGER.info('Saving test features with shape {features.shape}')
 +                    LOGGER.info("Saving test features with shape {features.shape}")
                      features = []
-@@ -419,5 +451,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -419,5 +450,3 @@ class PatchCore3D(torch.nn.Module):
          LOGGER.info("Saving PatchCore data.")
 -        self.anomaly_scorer.save(
 -            save_path, save_features_separately=False, prepend=prepend
 -        )
 +        self.anomaly_scorer.save(save_path, save_features_separately=False, prepend=prepend)
          patchcore_params = {
-@@ -426,8 +456,4 @@ class PatchCore3D(torch.nn.Module):
+@@ -426,8 +455,4 @@ class PatchCore3D(torch.nn.Module):
              "input_shape": self.input_shape,
 -            "pretrain_embed_dimension": self.forward_modules[
 -                "preprocessing"
@@ -566,24 +562,24 @@ index df4fc57..a59d79f 100644
 +            "pretrain_embed_dimension": self.forward_modules["preprocessing"].output_dim,
 +            "target_embed_dimension": self.forward_modules["preadapt_aggregator"].target_dim,
              "patchsize": self.patch_maker.patchsize,
-@@ -443,3 +469,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -443,3 +468,3 @@ class PatchCore3D(torch.nn.Module):
          device: torch.device,
 -        nn_method: patchcore3d.common.FaissNN(False, 4),
 +        nn_method: PatchCore3D.src.patchcore3d.common.FaissNN(False, 4),
          prepend: str = "",
-@@ -449,3 +475,3 @@ class PatchCore3D(torch.nn.Module):
+@@ -449,3 +474,3 @@ class PatchCore3D(torch.nn.Module):
              patchcore_params = pickle.load(load_file)
 -        patchcore_params["backbone"] = patchcore3d.backbones.load(device)
 +        patchcore_params["backbone"] = PatchCore3D.src.patchcore3d.backbones.load(device)
          patchcore_params["backbone"].name = patchcore_params["backbone.name"]
-@@ -483,5 +509,3 @@ class PatchMaker3D:
+@@ -483,5 +508,3 @@ class PatchMaker3D:
          for s in features.shape[-3:]:
 -            n_patches = (
 -                s + 2 * padding - 1 * (self.patchsize - 1) - 1
 -            ) / self.stride + 1
 +            n_patches = (s + 2 * padding - 1 * (self.patchsize - 1) - 1) / self.stride + 1
              number_of_total_patches.append(int(n_patches))
-@@ -505,5 +529,5 @@ class PatchMaker3D:
+@@ -505,5 +528,5 @@ class PatchMaker3D:
      ) -> torch.Tensor:
 -        ''' 
 -        Function to perform unfolding of a 5D tensor (not implemented in pytorch) 
@@ -592,21 +588,21 @@ index df4fc57..a59d79f 100644
 +        Function to perform unfolding of a 5D tensor (not implemented in pytorch)
 +        """
  
-@@ -520,5 +544,3 @@ class PatchMaker3D:
+@@ -520,5 +543,3 @@ class PatchMaker3D:
  
 -        def _get_im2col_indices_along_dim(
 -            input_d, kernel_d, dilation_d, padding_d, stride_d
 -        ):
 +        def _get_im2col_indices_along_dim(input_d, kernel_d, dilation_d, padding_d, stride_d):
              blocks_d = input_d + padding_d * 2 - dilation_d * (kernel_d - 1)
-@@ -526,5 +548,3 @@ class PatchMaker3D:
+@@ -526,5 +547,3 @@ class PatchMaker3D:
              # Stride kernel over input and find starting indices along dim d
 -            blocks_d_indices = torch.arange(
 -                0, blocks_d, stride_d, dtype=torch.int64, device=input.device
 -            ).unsqueeze(0)
 +            blocks_d_indices = torch.arange(0, blocks_d, stride_d, dtype=torch.int64, device=input.device).unsqueeze(0)
              num_blocks = (blocks_d - 1) // stride_d + 1
-@@ -552,14 +572,10 @@ class PatchMaker3D:
+@@ -552,14 +571,10 @@ class PatchMaker3D:
  
 -        padded_input = F.pad(input, (padding_d, padding_d,
 -                             padding_w, padding_w, padding_h, padding_h))
@@ -625,7 +621,7 @@ index df4fc57..a59d79f 100644
 -            kernel_d, num_blocks_row * num_blocks_col * num_blocks_depth
 +            batch_dim, channel_dim * kernel_h * kernel_w * kernel_d, num_blocks_row * num_blocks_col * num_blocks_depth
          )
-@@ -583,10 +599,13 @@ class PatchMaker3D:
+@@ -583,10 +598,13 @@ class PatchMaker3D:
          if return_max_mask:
 -            flat_indices = torch.stack([torch.argmax(patch_scores[ind])
 -                                       for ind in range(patch_scores.shape[0])])
