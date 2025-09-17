@@ -55,7 +55,7 @@
         "semantic-release": "^22.0.12",
         "semver": "^7.7.2",
         "smob": "^1.5.0",
-        "tar-fs": "^3.1.0",
+        "tar-fs": "^3.1.1",
         "ts-node": "^10.9.2",
         "zod": "^3.24.3"
     },
@@ -65,12 +65,12 @@
         "@tada5hi/eslint-config-typescript": "^1.2.17",
         "@tada5hi/tsconfig": "^0.6.0",
         "@types/cross-spawn": "^6.0.6",
-        "@types/dockerode": "^3.3.43",
+        "@types/dockerode": "^3.3.44",
         "@types/node": "^22.14.1",
         "@types/semver": "^7.7.1",
         "@types/tar-fs": "^2.0.4",
         "eslint": "^8.48.0",
-        "rollup": "^4.50.1",
+        "rollup": "^4.50.2",
         "typescript": "^5.9.2"
     }
 }
