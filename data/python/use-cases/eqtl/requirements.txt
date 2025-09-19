@@ -1,0 +1,12 @@
+numpy==1.26.4
+pandas==2.3
+pandas-plink==2.3.2
+scikit-learn==1.7.1
+torch==2.8.0
+tensorqtl==1.0.10
+matplotlib==3.10.3
+pysam==0.23.3
+tqdm==4.67
+scipy==1.16.1
+Pgenlib>=0.90.1
+qtl
