@@ -11,4 +11,4 @@ RUN python3 -m pip install --upgrade pip
 
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@01f00d4588ef87cf9df1d7fb96a42469a8403cbf
+RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@87d0f4485e2511b0fa447fc617eb2919f61cfccc
