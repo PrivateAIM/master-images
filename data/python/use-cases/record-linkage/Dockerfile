@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y wget gnupg lsb-release \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-	
+
 COPY requirements.txt /tmp/requirements.txt
 
 RUN python3 -m pip install --upgrade pip
@@ -31,5 +31,5 @@ RUN pip3 install -r /tmp/requirements.txt
 
 COPY --from=samply/mainzelliste-rs:main /usr/local/bin/mainzelliste /usr/local/bin/mainzelliste
 RUN chmod +x /usr/local/bin/mainzelliste
-	
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.2.4
+
+RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.3.0
