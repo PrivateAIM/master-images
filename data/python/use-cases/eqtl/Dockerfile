@@ -18,4 +18,4 @@ RUN python3 -m pip install uv
 
 RUN uv pip install -r /tmp/requirements.txt --system
 
-RUN uv pip install git+https://github.com/PrivateAIM/flame-patterns.git@0.3.0 --system
+RUN uv pip install git+https://github.com/PrivateAIM/flame-patterns.git@0.3.1 --system

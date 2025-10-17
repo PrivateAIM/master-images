@@ -32,4 +32,4 @@ RUN pip3 install -r /tmp/requirements.txt
 COPY --from=samply/mainzelliste-rs:main /usr/local/bin/mainzelliste /usr/local/bin/mainzelliste
 RUN chmod +x /usr/local/bin/mainzelliste
 
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.3.0
+RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.3.1
