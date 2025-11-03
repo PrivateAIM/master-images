@@ -13,3 +13,4 @@ RUN pip3 install -r /tmp/requirements.txt
 
 RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@canary
 
+RUN echo "none" >> tmp.log
