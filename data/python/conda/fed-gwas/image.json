@@ -1,0 +1,3 @@
+{
+    "commandArguments": ["run", "-n", "ppgwas", "--no-capture-output", "python"]
+}
