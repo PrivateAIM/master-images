@@ -7,6 +7,7 @@
 
 import type { CAC } from 'cac';
 import { consola } from 'consola';
+import type { ModemStreamWaitOptions } from 'docken';
 import { scanDirectory } from 'docken';
 import { createConfig } from '../config';
 import { SCAN_IMAGE_PATH } from '../constants';
@@ -33,6 +34,22 @@ export function registerCLIBuildCommand(cli: CAC) {
 
             applyCLICommandOptions(config, options);
 
+            const buildOptions : ModemStreamWaitOptions = {
+                onBuilding(progress) {
+                    consola.info(`Building ${progress.current}/${progress.total} (${progress.percent}%)`);
+                },
+                onDownloading(progress) {
+                    consola.info(`Downloading ${progress.current}/${progress.total} (${progress.percent}%)`);
+                },
+                onStreamChunk(chunk) {
+                    if (isNewLineCharacter(chunk.stream)) {
+                        return;
+                    }
+
+                    consola.debug(removeNewLineCharacter(chunk.stream));
+                },
+            };
+
             const scanResult = await scanDirectory(SCAN_IMAGE_PATH);
             if (image) {
                 const index = scanResult.images.findIndex(
@@ -46,18 +63,7 @@ export function registerCLIBuildCommand(cli: CAC) {
                 await buildImage({
                     config,
                     image: scanResult.images[index],
-                    options: {
-                        onBuilding(progress) {
-                            consola.info(`Building ${progress.current}/${progress.total} (${progress.percent}%)`);
-                        },
-                        onStreamChunk(chunk) {
-                            if (isNewLineCharacter(chunk.stream)) {
-                                return;
-                            }
-
-                            consola.debug(removeNewLineCharacter(chunk.stream));
-                        },
-                    },
+                    options: buildOptions,
                 });
                 return;
             }
@@ -65,18 +71,7 @@ export function registerCLIBuildCommand(cli: CAC) {
             await buildImages({
                 config,
                 images: scanResult.images,
-                options: {
-                    onBuilding(progress) {
-                        consola.success(`Step ${progress.current}/${progress.total} (${progress.percent}%)`);
-                    },
-                    onStreamChunk(chunk) {
-                        if (isNewLineCharacter(chunk.stream)) {
-                            return;
-                        }
-
-                        consola.info(removeNewLineCharacter(chunk.stream));
-                    },
-                },
+                options: buildOptions,
             });
         });
 }
