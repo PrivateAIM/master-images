@@ -11,11 +11,10 @@ import { scanDirectory } from 'docken';
 import { createConfig } from '../config';
 import { SCAN_IMAGE_PATH } from '../constants';
 import { buildImage, buildImages } from '../core';
+import { isNewLineCharacter, removeNewLineCharacter } from '../utils';
 import type { CLICommandOptions } from './type';
 import {
     applyCLICommandOptions,
-    onCompletedHook,
-    onProgressHook,
     setCLICommandOptions,
 } from './utils';
 
@@ -47,9 +46,17 @@ export function registerCLIBuildCommand(cli: CAC) {
                 await buildImage({
                     config,
                     image: scanResult.images[index],
-                    hooks: {
-                        onCompleted: onCompletedHook,
-                        onProgress: onProgressHook,
+                    options: {
+                        onBuilding(progress) {
+                            consola.info(`Building ${progress.current}/${progress.total} (${progress.percent}%)`);
+                        },
+                        onStreamChunk(chunk) {
+                            if (isNewLineCharacter(chunk.stream)) {
+                                return;
+                            }
+
+                            consola.debug(removeNewLineCharacter(chunk.stream));
+                        },
                     },
                 });
                 return;
@@ -58,9 +65,17 @@ export function registerCLIBuildCommand(cli: CAC) {
             await buildImages({
                 config,
                 images: scanResult.images,
-                hooks: {
-                    onCompleted: onCompletedHook,
-                    onProgress: onProgressHook,
+                options: {
+                    onBuilding(progress) {
+                        consola.success(`Step ${progress.current}/${progress.total} (${progress.percent}%)`);
+                    },
+                    onStreamChunk(chunk) {
+                        if (isNewLineCharacter(chunk.stream)) {
+                            return;
+                        }
+
+                        consola.info(removeNewLineCharacter(chunk.stream));
+                    },
                 },
             });
         });
