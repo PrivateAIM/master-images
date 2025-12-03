@@ -6,6 +6,6 @@ dataclasses
 pandas==2.2.2
 torch==2.3.0
 torchvision==0.18.0
-requests==2.32.3
+requests==2.32.4
 pynrrd==1.1.1
 -e git+https://github.com/MIC-DKFZ/BodyPartRegression.git#egg=bpreg
