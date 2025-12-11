@@ -6,7 +6,5 @@
  */
 
 export * from './character';
-export * from './env';
-export * from './object';
 export * from './package-json';
 export * from './slash';

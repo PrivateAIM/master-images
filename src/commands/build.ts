@@ -7,15 +7,15 @@
 
 import type { CAC } from 'cac';
 import { consola } from 'consola';
+import type { ModemStreamWaitOptions } from 'docken';
 import { scanDirectory } from 'docken';
 import { createConfig } from '../config';
 import { SCAN_IMAGE_PATH } from '../constants';
 import { buildImage, buildImages } from '../core';
+import { isNewLineCharacter, removeNewLineCharacter } from '../utils';
 import type { CLICommandOptions } from './type';
 import {
     applyCLICommandOptions,
-    onCompletedHook,
-    onProgressHook,
     setCLICommandOptions,
 } from './utils';
 
@@ -34,6 +34,22 @@ export function registerCLIBuildCommand(cli: CAC) {
 
             applyCLICommandOptions(config, options);
 
+            const buildOptions : ModemStreamWaitOptions = {
+                onBuilding(progress) {
+                    consola.info(`Building ${progress.current}/${progress.total} (${progress.percent}%)`);
+                },
+                onDownloading(progress) {
+                    consola.info(`Downloading ${progress.current}/${progress.total} (${progress.percent}%)`);
+                },
+                onStreamChunk(chunk) {
+                    if (isNewLineCharacter(chunk.stream)) {
+                        return;
+                    }
+
+                    consola.debug(removeNewLineCharacter(chunk.stream));
+                },
+            };
+
             const scanResult = await scanDirectory(SCAN_IMAGE_PATH);
             if (image) {
                 const index = scanResult.images.findIndex(
@@ -47,10 +63,7 @@ export function registerCLIBuildCommand(cli: CAC) {
                 await buildImage({
                     config,
                     image: scanResult.images[index],
-                    hooks: {
-                        onCompleted: onCompletedHook,
-                        onProgress: onProgressHook,
-                    },
+                    options: buildOptions,
                 });
                 return;
             }
@@ -58,10 +71,7 @@ export function registerCLIBuildCommand(cli: CAC) {
             await buildImages({
                 config,
                 images: scanResult.images,
-                hooks: {
-                    onCompleted: onCompletedHook,
-                    onProgress: onProgressHook,
-                },
+                options: buildOptions,
             });
         });
 }

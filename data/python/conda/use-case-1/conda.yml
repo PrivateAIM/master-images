@@ -247,9 +247,9 @@ dependencies:
       - packaging==24.1
       - pandas==2.2.2
       - pillow==10.4.0
-      - pydeseq2==0.5.1
+      - pydeseq2==0.4.12
       - pyparsing==3.1.2
       - scikit-learn==1.5.1
       - scipy==1.13.1
       - threadpoolctl==3.5.0
-      - git+https://github.com/PrivateAIM/flame-patterns.git@0.2.4.1
+      - git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.3.1

@@ -6,19 +6,15 @@
  */
 
 import type { Client } from 'docken';
-import DockerClient from 'dockerode';
+import { createClient } from 'docken';
 
 let instance : Client | undefined;
-export function useDockerDaemon() {
+export function useDockerClient() : Client {
     if (typeof instance !== 'undefined') {
         return instance;
     }
 
-    instance = new DockerClient();
+    instance = createClient();
 
     return instance;
-}
-
-export function setDockerDaemon(input: DockerClient) {
-    instance = input;
 }

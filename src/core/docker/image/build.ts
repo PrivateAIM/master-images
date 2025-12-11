@@ -6,19 +6,18 @@
  */
 
 import { waitForModemStream } from 'docken';
-import type { ScanResultItem } from 'docken';
+import type { ModemStreamWaitOptions, ScanResultItem } from 'docken';
 import path from 'node:path';
 import tar from 'tar-fs';
 import type { Config } from '../../../config';
 import { SCAN_IMAGE_PATH } from '../../../constants';
-import { useDockerDaemon } from '../daemon';
+import { useDockerClient } from '../client';
 import { buildImageURL } from '../utils';
-import type { ImageHooks } from './type';
 
 export async function buildImage(context: {
     config: Config,
     image: ScanResultItem,
-    hooks?: ImageHooks
+    options?: ModemStreamWaitOptions
 }) {
     const imageURL = await buildImageURL(context);
 
@@ -26,27 +25,18 @@ export async function buildImage(context: {
 
     const pack = tar.pack(imageFilePath);
 
-    const docker = useDockerDaemon();
+    const docker = useDockerClient();
     const stream = await docker.buildImage(pack, {
         t: imageURL,
     });
 
-    await waitForModemStream(docker.modem, stream, {
-        onProgress: (res) => {
-            if (context.hooks && context.hooks.onProgress) {
-                context.hooks.onProgress(res);
-            }
-        },
-    });
-
-    if (context.hooks && context.hooks.onCompleted) {
-        context.hooks.onCompleted();
-    }
+    await waitForModemStream(docker.modem, stream, context.options);
 }
+
 export async function buildImages(context: {
     images: ScanResultItem[],
     config: Config,
-    hooks?: ImageHooks
+    options?: ModemStreamWaitOptions
 }) {
     const promises: Promise<any>[] = [];
 
@@ -54,7 +44,7 @@ export async function buildImages(context: {
         promises.push(buildImage({
             config: context.config,
             image: context.images[i],
-            hooks: context.hooks,
+            options: context.options,
         }));
     }
 

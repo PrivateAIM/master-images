@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.11
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -yqq && \
@@ -11,4 +11,4 @@ RUN python3 -m pip install --upgrade pip
 
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@e6f6d6b13ad67d3a29e61c4f3315cff438084ff5
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.3.1

@@ -5,22 +5,21 @@
  * view the LICENSE file that was distributed with this source code.
  */
 
-import type { ScanResultItem } from 'docken';
+import type { ModemStreamWaitOptions, ScanResultItem } from 'docken';
 import { waitForModemStream } from 'docken';
 import type { AuthConfig } from 'dockerode';
 import type { Config } from '../../../config';
-import { useDockerDaemon } from '../daemon';
+import { useDockerClient } from '../client';
 import { buildImageURL } from '../utils';
-import type { ImageHooks } from './type';
 
 export async function pushImage(context: {
     image: ScanResultItem,
     config: Config,
-    hooks?: ImageHooks
+    options?: ModemStreamWaitOptions
 }) {
     const imageURL = await buildImageURL(context);
 
-    const docker = useDockerDaemon();
+    const docker = useDockerClient();
     const image = docker.getImage(imageURL);
 
     let authConfig : AuthConfig | undefined;
@@ -40,13 +39,13 @@ export async function pushImage(context: {
         authconfig: authConfig,
     });
 
-    return waitForModemStream(docker.modem, stream);
+    return waitForModemStream(docker.modem, stream, context.options);
 }
 
 export async function pushImages(context: {
     images: ScanResultItem[],
     config: Config,
-    hooks?: ImageHooks
+    options?: ModemStreamWaitOptions
 }) {
     const promises: Promise<any>[] = [];
 
@@ -54,7 +53,7 @@ export async function pushImages(context: {
         promises.push(pushImage({
             image: context.images[i],
             config: context.config,
-            hooks: context.hooks,
+            options: context.options,
         }));
     }
 

@@ -7,4 +7,3 @@
 
 export * from './build';
 export * from './push';
-export * from './type';

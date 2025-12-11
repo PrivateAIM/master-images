@@ -11,6 +11,7 @@ import { scanDirectory } from 'docken';
 import { createConfig } from '../config';
 import { SCAN_IMAGE_PATH } from '../constants';
 import { pushImage, pushImages } from '../core';
+import { isNewLineCharacter, removeNewLineCharacter } from '../utils';
 import type { CLICommandOptions } from './type';
 import { applyCLICommandOptions, setCLICommandOptions } from './utils';
 
@@ -47,6 +48,18 @@ export function registerCLIPushCommand(cli: CAC) {
                 await pushImage({
                     config,
                     image: scanResult.images[index],
+                    options: {
+                        onPushing(progress) {
+                            consola.info(`Step ${progress.current}/${progress.total} (${progress.percent}%)`);
+                        },
+                        onStreamChunk(chunk) {
+                            if (isNewLineCharacter(chunk.stream)) {
+                                return;
+                            }
+
+                            consola.debug(removeNewLineCharacter(chunk.stream));
+                        },
+                    },
                 });
                 return;
             }
@@ -54,6 +67,18 @@ export function registerCLIPushCommand(cli: CAC) {
             await pushImages({
                 config,
                 images: scanResult.images,
+                options: {
+                    onPushing(progress) {
+                        consola.info(`Pushing ${progress.current}/${progress.total}bytes (${progress.percent}%)`);
+                    },
+                    onStreamChunk(chunk) {
+                        if (isNewLineCharacter(chunk.stream)) {
+                            return;
+                        }
+
+                        consola.debug(removeNewLineCharacter(chunk.stream));
+                    },
+                },
             });
         });
 }
