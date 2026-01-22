@@ -11,4 +11,4 @@ RUN python3 -m pip install --upgrade pip
 
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@cf22bd4f1ce1c5efa844c453ec4f98aa303fa682
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@54ebad64df1ea7e4b723b96ecc0f853331e0d8f6
