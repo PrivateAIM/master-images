@@ -32,4 +32,4 @@ RUN pip3 install -r /tmp/requirements.txt
 COPY --from=samply/mainzelliste-rs:0.1.1 /usr/local/bin/mainzelliste /usr/local/bin/mainzelliste
 RUN chmod +x /usr/local/bin/mainzelliste
 
-RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.4.1
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@cf22bd4f1ce1c5efa844c453ec4f98aa303fa682
