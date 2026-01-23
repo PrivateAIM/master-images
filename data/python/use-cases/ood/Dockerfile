@@ -33,4 +33,4 @@ COPY requirements.txt /tmp/requirements.txt
 
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.4.1
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.4.2

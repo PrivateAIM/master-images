@@ -5,4 +5,4 @@ RUN apt-get update -yqq && \
 
 RUN python3 -m pip install --upgrade pip
 
-RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.4.1
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.4.2
