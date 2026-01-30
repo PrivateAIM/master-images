@@ -1,0 +1,47 @@
+diff --git a/nnunet/inference/pretrained_models/download_pretrained_model.py b/nnunet/inference/pretrained_models/download_pretrained_model.py
+index c0ebb98..bac338d 100644
+--- a/nnunet/inference/pretrained_models/download_pretrained_model.py
++++ b/nnunet/inference/pretrained_models/download_pretrained_model.py
+@@ -279,9 +279,9 @@ def download_and_install_from_url(url):
+                                                     "set (RESULTS_FOLDER missing as environment variable, see " \
+                                                     "Installation instructions)"
+     print('Downloading pretrained model from url:', url)
+-    import http.client
+-    http.client.HTTPConnection._http_vsn = 10
+-    http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
++    # import http.client
++    # http.client.HTTPConnection._http_vsn = 10
++    # http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
+ 
+     import os
+     home = os.path.expanduser('~')
+diff --git a/nnunet/inference/segmentation_export.py b/nnunet/inference/segmentation_export.py
+index 4b73f4d..6ab42c3 100644
+--- a/nnunet/inference/segmentation_export.py
++++ b/nnunet/inference/segmentation_export.py
+@@ -157,14 +157,14 @@ def save_segmentation_nifti_from_softmax(segmentation_softmax: Union[str, np.nda
+     else:
+         seg_old_size_postprocessed = seg_old_size
+ 
+-    seg_resized_itk = sitk.GetImageFromArray(seg_old_size_postprocessed.astype(np.uint8))
++    seg_resized_itk = sitk.GetImageFromArray(seg_old_size_postprocessed.astype(np.uint16))
+     seg_resized_itk.SetSpacing(properties_dict['itk_spacing'])
+     seg_resized_itk.SetOrigin(properties_dict['itk_origin'])
+     seg_resized_itk.SetDirection(properties_dict['itk_direction'])
+     sitk.WriteImage(seg_resized_itk, out_fname)
+ 
+     if (non_postprocessed_fname is not None) and (seg_postprogess_fn is not None):
+-        seg_resized_itk = sitk.GetImageFromArray(seg_old_size.astype(np.uint8))
++        seg_resized_itk = sitk.GetImageFromArray(seg_old_size.astype(np.uint16))
+         seg_resized_itk.SetSpacing(properties_dict['itk_spacing'])
+         seg_resized_itk.SetOrigin(properties_dict['itk_origin'])
+         seg_resized_itk.SetDirection(properties_dict['itk_direction'])
+@@ -241,7 +241,7 @@ def save_segmentation_nifti(segmentation, out_fname, dct, order=1, force_separat
+     else:
+         seg_old_size = seg_old_spacing
+ 
+-    seg_resized_itk = sitk.GetImageFromArray(seg_old_size.astype(np.uint8))
++    seg_resized_itk = sitk.GetImageFromArray(seg_old_size.astype(np.uint16))
+     seg_resized_itk.SetSpacing(dct['itk_spacing'])
+     seg_resized_itk.SetOrigin(dct['itk_origin'])
+     seg_resized_itk.SetDirection(dct['itk_direction'])
