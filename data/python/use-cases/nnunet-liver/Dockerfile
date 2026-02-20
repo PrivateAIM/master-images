@@ -66,6 +66,6 @@ ENV TASK_NAME=Task029_LiTS
 ENV MULTI_MODAL=False
 RUN nnUNet_download_pretrained_model $TASK_NAME
 
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.2.4
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.5.0
 
 
