@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.11
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -yqq && \
@@ -11,4 +11,4 @@ RUN python3 -m pip install --upgrade pip
 
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@a02d7378030c75604bab16bde510c5c4d85884c5
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@16a2ad9f962b25a859b3a3c2bba0c19be6d460ec
