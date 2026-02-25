@@ -22,4 +22,4 @@ RUN python3 -m pip install --upgrade pip
 RUN pip3 install -r /tmp/requirements.txt
 
 # Install FLAME patterns library
-RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.5.0
+RUN pip3 install git+https://github.com/PrivateAIM/flame-patterns.git@0.5.1
