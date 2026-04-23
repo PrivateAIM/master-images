@@ -66,6 +66,6 @@ ENV TASK_NAME=Task029_LiTS
 ENV MULTI_MODAL=False
 RUN nnUNet_download_pretrained_model $TASK_NAME
 
-RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.6.3.1
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.6.4
 
 
