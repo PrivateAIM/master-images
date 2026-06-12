@@ -1,0 +1,20 @@
+FROM python:3.13
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -yqq && \
+    apt-get dist-upgrade -yqq && \
+    apt-get install -yqq git
+    libbz2-dev \
+    liblzma-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    zlib1g-dev \
+    bedtools
+
+COPY requirements.txt /tmp/requirements.txt
+
+RUN python3 -m pip install --upgrade pip
+
+RUN pip3 install -r /tmp/requirements.txt
+
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.6.5
