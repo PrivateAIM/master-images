@@ -3,7 +3,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -yqq && \
     apt-get dist-upgrade -yqq && \
-    apt-get install -yqq git \
+    apt-get install -yqq \
+    git \
     libbz2-dev \
     liblzma-dev \
     libcurl4-openssl-dev \
