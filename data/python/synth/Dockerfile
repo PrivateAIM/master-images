@@ -16,3 +16,4 @@ RUN pip3 install -r /tmp/requirements.txt
 # its opendp pin does not override the version smartnoise-synth pulls.
 RUN pip3 install git+https://github.com/PrivateAIM/python-sdk.git@0.6.0
 RUN pip3 install --no-deps git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.6.5
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-pets.git@0.1.0
