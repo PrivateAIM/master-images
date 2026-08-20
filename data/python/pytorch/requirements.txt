@@ -8,6 +8,7 @@ torchvision == 0.21.0
 torcheval == 0.0.7
 scikit-learn == 1.5.2
 numpy == 1.26.4
+tenseal == 0.3.17
 tqdm
 pudb
 opacus
