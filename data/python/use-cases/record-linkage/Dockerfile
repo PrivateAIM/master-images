@@ -49,7 +49,11 @@ ENV PGDATA=${HOME}/pgdata
 ENV PGHOST=/tmp
 ENV PATH=/usr/lib/postgresql/14/bin:${PATH}
 
+# initdb and postgres call getpwuid() and abort if the effective uid has no
+# passwd entry. The uid below has one; making the file group-writable lets a
+# runtime-injected uid register itself as well (see ensure_passwd_entry()).
 RUN useradd --uid ${APP_UID} --gid 0 --home-dir ${HOME} --create-home --shell /bin/bash ${APP_USER} \
+    && chmod g=u /etc/passwd /etc/group \
     && mkdir -p ${PGDATA} \
     && chown -R ${APP_UID}:0 ${HOME} \
     && chmod -R g+rwX ${HOME} \
