@@ -29,10 +29,11 @@ RUN apt-get update && apt-get install -y wget gnupg lsb-release \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# The cluster created by the Debian package lives in /var/lib/postgresql and is
+# If the Debian package created a cluster, it lives in /var/lib/postgresql and is
 # owned by the postgres user, which the unprivileged runtime user cannot start.
-# It is replaced by a cluster in $PGDATA further down.
-RUN pg_dropcluster --stop 14 main
+# It is replaced by the cluster in $PGDATA further down. Depending on the base
+# image, no cluster is created at install time at all - hence the guard.
+RUN pg_lsclusters -h | grep -q '^14  *main' && pg_dropcluster --stop 14 main || true
 
 COPY requirements.txt /tmp/requirements.txt
 
