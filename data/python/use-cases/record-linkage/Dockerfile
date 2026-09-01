@@ -65,5 +65,6 @@ USER ${APP_UID}
 RUN initdb --username=postgres --auth=trust --encoding=UTF8 --locale=en_US.UTF-8 \
     && printf "unix_socket_directories = '/tmp'\nlisten_addresses = 'localhost'\n" \
        >> ${PGDATA}/postgresql.conf
+USER root
 
 WORKDIR ${HOME}
