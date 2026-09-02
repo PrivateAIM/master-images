@@ -18,4 +18,4 @@ RUN python3 -m pip install uv
 
 RUN uv pip install -r /tmp/requirements.txt --system
 
-RUN uv pip install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.6.5 --system
+RUN uv pip install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.7.0 --system

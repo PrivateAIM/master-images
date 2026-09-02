@@ -15,4 +15,4 @@ RUN pip3 install -r /tmp/requirements.txt
 # requires opendp >=0.14 internally. Install patterns with --no-deps so
 # its opendp pin does not override the version smartnoise-synth pulls.
 RUN pip3 install git+https://github.com/PrivateAIM/python-sdk.git@0.6.0
-RUN pip3 install --no-deps git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.6.5
+RUN pip3 install --no-deps git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.7.0
