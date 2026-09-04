@@ -43,7 +43,7 @@ RUN pip3 install -r /tmp/requirements.txt
 COPY --from=samply/mainzelliste-rs:0.1.1 /usr/local/bin/mainzelliste /usr/local/bin/mainzelliste
 RUN chmod +x /usr/local/bin/mainzelliste
 
-RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.7.0
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@0.7.1
 
 ENV HOME=/home/${APP_USER}
 ENV PGDATA=${HOME}/pgdata
