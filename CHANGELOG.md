@@ -85,6 +85,13 @@
 * to v3
 * bump to v2
 
+## [3.7.1](https://github.com/PrivateAIM/master-images/compare/v3.7.0...v3.7.1) (2026-10-28)
+
+
+### Bug Fixes
+
+* **deps:** bump the minorandpatch group across 1 directory with 11 updates ([#279](https://github.com/PrivateAIM/master-images/issues/279)) ([6927719](https://github.com/PrivateAIM/master-images/commit/69277191facd34da1630733417628e1d373e3b1d))
+
 ## [3.7.0](https://github.com/PrivateAIM/master-images/compare/v3.6.0...v3.7.0) (2026-10-28)
 
 
