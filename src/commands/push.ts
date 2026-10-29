@@ -37,17 +37,17 @@ export function registerCLIPushCommand(cli: CAC) {
 
             const scanResult = await scanDirectory(SCAN_IMAGE_PATH);
             if (image) {
-                const index = scanResult.images.findIndex(
+                const selectedImage = scanResult.images.find(
                     (el) => el.virtualPath === image,
                 );
-                if (index === -1) {
+                if (!selectedImage) {
                     consola.warn(`Image ${image} could not be found.`);
                     process.exit(1);
                 }
 
                 await pushImage({
                     config,
-                    image: scanResult.images[index],
+                    image: selectedImage,
                     options: {
                         onPushing(progress) {
                             consola.info(`Step ${progress.current}/${progress.total} (${progress.percent}%)`);

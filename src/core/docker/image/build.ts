@@ -41,9 +41,14 @@ export async function buildImages(context: {
     const promises: Promise<any>[] = [];
 
     for (let i = 0; i < context.images.length; i++) {
+        const image = context.images[i];
+        if (image === undefined) {
+            continue;
+        }
+
         promises.push(buildImage({
             config: context.config,
-            image: context.images[i],
+            image,
             options: context.options,
         }));
     }

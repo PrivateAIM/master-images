@@ -17,7 +17,12 @@ export async function readConfig(path?: string) : Promise<OptionsInput> {
     });
 
     for (let i = 0; i < fileInfos.length; i++) {
-        let data = await load(fileInfos[i]);
+        const fileInfo = fileInfos[i];
+        if (fileInfo === undefined) {
+            continue;
+        }
+
+        let data = await load(fileInfo);
         if (data.default) {
             data = data.default;
         }
