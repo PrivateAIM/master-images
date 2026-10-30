@@ -51,7 +51,7 @@ export async function pushImages(context: {
 
     for (let i = 0; i < context.images.length; i++) {
         promises.push(pushImage({
-            image: context.images[i],
+            image: context.images[i]!,
             config: context.config,
             options: context.options,
         }));

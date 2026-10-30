@@ -47,7 +47,7 @@ export function registerCLIPushCommand(cli: CAC) {
 
                 await pushImage({
                     config,
-                    image: scanResult.images[index],
+                    image: scanResult.images[index]!,
                     options: {
                         onPushing(progress) {
                             consola.info(`Step ${progress.current}/${progress.total} (${progress.percent}%)`);
