@@ -23,11 +23,12 @@ export function verifyWebhookRequestSignature(req: Request, config: Config) : bo
         const keys = ['event', 'repository', 'commit', 'ref', 'head', 'workflow', 'requestID'];
         const keysMissing : string[] = [];
         for (let i = 0; i < keys.length; i++) {
-            const value = useRequestBody(req, keys[i]);
+            const key = keys[i]!;
+            const value = useRequestBody(req, key);
             if (value) {
-                record[keys[i]] = value;
+                record[key] = value;
             } else {
-                keysMissing.push(keys[i]);
+                keysMissing.push(key);
             }
         }
 
