@@ -85,6 +85,13 @@
 * to v3
 * bump to v2
 
+## [3.8.1](https://github.com/PrivateAIM/master-images/compare/v3.8.0...v3.8.1) (2026-11-06)
+
+
+### Bug Fixes
+
+* **deps:** bump torch from 2.8.0 to 2.13.0 in /data/python/torch_vision ([#306](https://github.com/PrivateAIM/master-images/issues/306)) ([0d15e51](https://github.com/PrivateAIM/master-images/commit/0d15e518c967ed3e32aef7b1b99770a58ccdcb54))
+
 ## [3.8.0](https://github.com/PrivateAIM/master-images/compare/v3.7.0...v3.8.0) (2026-11-03)
 
 
