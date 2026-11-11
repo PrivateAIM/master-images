@@ -22,7 +22,7 @@ ENV HTSLIB_LIBRARY_DIR=/usr/local/lib \
 
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@1.1.0
+RUN pip3 install git+https://github.com/PrivateAIM/python-sdk-patterns.git@1.2.0
 
 
 RUN apt-get update -yqq && \
