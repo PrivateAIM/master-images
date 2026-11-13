@@ -85,6 +85,23 @@
 * to v3
 * bump to v2
 
+## [3.9.0](https://github.com/PrivateAIM/master-images/compare/v3.8.0...v3.9.0) (2026-11-13)
+
+
+### Features
+
+* bump flame sdk-patterns version to v1.2.0 ([b3a6f83](https://github.com/PrivateAIM/master-images/commit/b3a6f83495b248979f6f9175d1939cf24dbfd2db))
+* test small docker sizes ([541fe3c](https://github.com/PrivateAIM/master-images/commit/541fe3c4c69af6561e1238b2b83414d5c0c9b2d6))
+* update dependencies ([038df95](https://github.com/PrivateAIM/master-images/commit/038df95eba294de8fcdf9b27ecd8264db76c00a2))
+
+
+### Bug Fixes
+
+* **deps:** bump protobufjs from 7.5.4 to 7.6.6 ([#305](https://github.com/PrivateAIM/master-images/issues/305)) ([79a1294](https://github.com/PrivateAIM/master-images/commit/79a1294a837755dee23d18f88e1058992ecfbd59))
+* **deps:** bump torch from 2.8.0 to 2.13.0 in /data/python/torch_vision ([#306](https://github.com/PrivateAIM/master-images/issues/306)) ([0d15e51](https://github.com/PrivateAIM/master-images/commit/0d15e518c967ed3e32aef7b1b99770a58ccdcb54))
+* **deps:** bump torch from 2.8.0 to 2.13.0 in /data/python/use-cases/bpr ([#315](https://github.com/PrivateAIM/master-images/issues/315)) ([61e7564](https://github.com/PrivateAIM/master-images/commit/61e7564db335fac82c9e9b215ac5a34cb4635103))
+* **deps:** bump torch from 2.8.0 to 2.13.0 in /data/python/use-cases/ood ([#314](https://github.com/PrivateAIM/master-images/issues/314)) ([50bef3d](https://github.com/PrivateAIM/master-images/commit/50bef3ddfe7196b2bb5020d49305f572054ad435))
+
 ## [3.8.0](https://github.com/PrivateAIM/master-images/compare/v3.7.0...v3.8.0) (2026-11-03)
 
 
