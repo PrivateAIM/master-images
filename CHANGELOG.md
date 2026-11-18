@@ -85,6 +85,20 @@
 * to v3
 * bump to v2
 
+## [3.8.0](https://github.com/PrivateAIM/master-images/compare/v3.7.0...v3.8.0) (2026-11-03)
+
+
+### Features
+
+* update dependencies ([528cc63](https://github.com/PrivateAIM/master-images/commit/528cc63f466cccb198c64dfa89bd4a7f3aee60a2))
+* update dependencies ([29aeac0](https://github.com/PrivateAIM/master-images/commit/29aeac0107ac633ef139df2968e1b46f8fa9ee72))
+* update dependencies ([99c495d](https://github.com/PrivateAIM/master-images/commit/99c495dc4d15106ae29dad83a9bbc95afb041ce9))
+
+
+### Bug Fixes
+
+* **deps:** bump the minorandpatch group across 1 directory with 11 updates ([#279](https://github.com/PrivateAIM/master-images/issues/279)) ([6927719](https://github.com/PrivateAIM/master-images/commit/69277191facd34da1630733417628e1d373e3b1d))
+
 ## [3.7.0](https://github.com/PrivateAIM/master-images/compare/v3.6.0...v3.7.0) (2026-10-28)
 
 

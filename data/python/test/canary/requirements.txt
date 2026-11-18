@@ -2,11 +2,12 @@ httpx == 0.27.0
 fastapi == 0.110.0
 uvicorn == 0.27.1
 minio == 7.2.4
-opendp
-pandas == 2.2.3
+# must satisfy flame sdk-patterns' "opendp ^0.15.1", otherwise installing the SDK reinstalls opendp
+opendp >= 0.15.1, < 0.16
+pandas == 3.1.1
 lifelines == 0.30.0
-numpy == 1.26.4
-statsmodels == 0.14.5
-scikit-learn == 1.6.1
+numpy == 2.5.4
+statsmodels == 0.15.0
+scikit-learn == 1.9.1
 requests == 2.32.3
 matplotlib
