@@ -85,6 +85,29 @@
 * to v3
 * bump to v2
 
+## [3.9.0](https://github.com/PrivateAIM/master-images/compare/v3.8.0...v3.9.0) (2026-11-19)
+
+
+### Features
+
+* add federated rmkl image ([65d9df4](https://github.com/PrivateAIM/master-images/commit/65d9df4553009dcbb4140ec676a6986192ce14dc))
+* bump flame sdk-patterns version to v1.2.0 ([b3a6f83](https://github.com/PrivateAIM/master-images/commit/b3a6f83495b248979f6f9175d1939cf24dbfd2db))
+* test small docker sizes ([541fe3c](https://github.com/PrivateAIM/master-images/commit/541fe3c4c69af6561e1238b2b83414d5c0c9b2d6))
+* update dependencies ([038df95](https://github.com/PrivateAIM/master-images/commit/038df95eba294de8fcdf9b27ecd8264db76c00a2))
+* update python-sdk-patterns to version 1.2.1 in conda.yml and Dockerfile ([6f99183](https://github.com/PrivateAIM/master-images/commit/6f991830297934f7beb7e2a34a33181dfd573820))
+* update python-sdk-patterns to version 1.2.1 in conda.yml and Dockerfile ([a414d20](https://github.com/PrivateAIM/master-images/commit/a414d20079df7dc54918641143d538ed0fe05e02))
+
+
+### Bug Fixes
+
+* **deps:** bump protobufjs from 7.5.4 to 7.6.6 ([#305](https://github.com/PrivateAIM/master-images/issues/305)) ([79a1294](https://github.com/PrivateAIM/master-images/commit/79a1294a837755dee23d18f88e1058992ecfbd59))
+* **deps:** bump pytorch-lightning in /data/python/use-cases/bpr ([#316](https://github.com/PrivateAIM/master-images/issues/316)) ([c42085f](https://github.com/PrivateAIM/master-images/commit/c42085f7e524d2e8df625813cc5e3aeb8466c425))
+* **deps:** bump requests in /data/python/use-cases/fed-rmkl ([#318](https://github.com/PrivateAIM/master-images/issues/318)) ([30f4213](https://github.com/PrivateAIM/master-images/commit/30f42139fba127f87c9ff1d96092bda2a8d34abe))
+* **deps:** bump torch from 2.8.0 to 2.13.0 in /data/python/torch_vision ([#306](https://github.com/PrivateAIM/master-images/issues/306)) ([0d15e51](https://github.com/PrivateAIM/master-images/commit/0d15e518c967ed3e32aef7b1b99770a58ccdcb54))
+* **deps:** bump torch from 2.8.0 to 2.13.0 in /data/python/use-cases/bpr ([#315](https://github.com/PrivateAIM/master-images/issues/315)) ([61e7564](https://github.com/PrivateAIM/master-images/commit/61e7564db335fac82c9e9b215ac5a34cb4635103))
+* **deps:** bump torch from 2.8.0 to 2.13.0 in /data/python/use-cases/ood ([#314](https://github.com/PrivateAIM/master-images/issues/314)) ([50bef3d](https://github.com/PrivateAIM/master-images/commit/50bef3ddfe7196b2bb5020d49305f572054ad435))
+* updated dockerfile and conda req-s for uc1 ([#319](https://github.com/PrivateAIM/master-images/issues/319)) ([a0cda54](https://github.com/PrivateAIM/master-images/commit/a0cda540604950998d6adc9bd2eda92893635be7))
+
 ## [3.8.0](https://github.com/PrivateAIM/master-images/compare/v3.7.0...v3.8.0) (2026-11-03)
 
 
