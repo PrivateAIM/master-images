@@ -1,0 +1,13 @@
+pandas == 2.2.3
+lifelines == 0.30.0
+numpy == 2.2.6
+statsmodels == 0.14.5
+scikit-learn == 1.6.1
+requests == 2.32.3
+scipy == 1.14.1
+pyyaml == 6.0.2
+matplotlib == 3.11.2
+picos == 2.5.1
+cvxopt == 1.3.3
+progress == 1.6.1
+rMKLdr @ git+https://github.com/pfeiferAI/rMKL-DR.git@c9c565b4df36904cb5160279e3ca511e69b94c73
