@@ -43,7 +43,7 @@ export async function buildImages(context: {
     for (let i = 0; i < context.images.length; i++) {
         promises.push(buildImage({
             config: context.config,
-            image: context.images[i],
+            image: context.images[i]!,
             options: context.options,
         }));
     }
