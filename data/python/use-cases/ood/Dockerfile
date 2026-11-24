@@ -1,6 +1,7 @@
 FROM python:3.12
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONPATH=/
 
 RUN apt-get update -yqq && \
     apt-get install -yqq \

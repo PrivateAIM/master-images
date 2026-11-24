@@ -39,7 +39,7 @@ PatchCore3D internally incorporates or adapts code from the following repositori
   *License:* CeCILL-B License
 
 - **CGV MOOD 2022** ([2na-97/CGV_MOOD2022](https://github.com/2na-97/CGV_MOOD2022))  
-  *License:* Not specified in original repository; only used internally via PatchCore3D 
+  *License:* MIT License; only used internally via PatchCore3D 
 
 - **IFL Unsupervised Anomaly Detection** ([snavalm/ifl_unsup_anom_det](https://github.com/snavalm/ifl_unsup_anom_det))  
   *License:* MIT License (modified for PatchCore3D)
