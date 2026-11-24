@@ -1,10 +1,10 @@
-FROM python:3.11
+FROM python:3.12
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -yqq && \
     apt-get dist-upgrade -yqq && \
-    apt-get install -yqq git
+    apt-get install -yqq git libx11-6 libxrender1
 
 COPY requirements.txt /tmp/requirements.txt
 
