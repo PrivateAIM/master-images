@@ -2,5 +2,5 @@ faiss-cpu==1.11.0
 numpy==2.2.6
 SimpleITK==2.5.2
 scikit-image==0.24.0
-pydicom==3.0.1
+pydicom==3.0.2
 mitk-python==2026.6
