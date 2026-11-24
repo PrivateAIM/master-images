@@ -8,6 +8,8 @@ RUN apt-get update -yqq && \
     unzip \
     curl \
     libgl1 \
+    libx11-6 \
+    libxrender1 \
  && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p src/models/

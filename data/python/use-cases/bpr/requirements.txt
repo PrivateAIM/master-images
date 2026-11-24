@@ -1,11 +1,17 @@
-pytorch_lightning==2.6.1
+setuptools==80.9.0
+pytorch_lightning==2.2.0
+lightning-utilities==0.15.2
 nibabel==5.3.0
 scipy==1.16.0
 albumentations==1.4.1
 dataclasses
+numpy==2.2.6
 pandas==2.2.2
-torch==2.13.0
+torch==2.3.0
 torchvision==0.18.0
-requests==2.32.4
+requests==2.32.3
 pynrrd==1.1.1
--e git+https://github.com/MIC-DKFZ/BodyPartRegression.git#egg=bpreg
+pydicom==3.0.1
+SimpleITK==2.5.2
+mitk-python==2026.6
+-e git+https://github.com/MIC-DKFZ/BodyPartRegression.git@7f66baab5aa53c07eb08d89b4b891293fcc04641#egg=bpreg
