@@ -9,7 +9,7 @@ numpy==2.2.6
 pandas==2.2.2
 torch==2.3.0
 torchvision==0.18.0
-requests==2.32.3
+requests==2.33.0
 pynrrd==1.1.1
 pydicom==3.0.1
 SimpleITK==2.5.2
