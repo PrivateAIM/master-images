@@ -62,7 +62,7 @@ export function registerCLIBuildCommand(cli: CAC) {
 
                 await buildImage({
                     config,
-                    image: scanResult.images[index],
+                    image: scanResult.images[index]!,
                     options: buildOptions,
                 });
                 return;

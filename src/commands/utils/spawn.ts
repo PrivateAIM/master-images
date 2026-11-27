@@ -27,10 +27,11 @@ export async function spawnCLIProcess(config: Config, command: string) {
     ];
 
     for (let i = 0; i < keys.length; i++) {
-        if (config.has(keys[i])) {
+        const key = keys[i]!;
+        if (config.has(key)) {
             args.push(...[
-                `--${keys[i]}`,
-                config.get(keys[i]) as string,
+                `--${key}`,
+                config.get(key) as string,
             ]);
         }
     }
